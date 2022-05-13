@@ -45,15 +45,14 @@ export async function getMyPosts(login) {
   const result = await answer.json();
   return result.data;
 }
-export async function uploadPost(data) {
+export async function uploadPost(data, text) {
   const formData = new FormData();
-  console.log(data);
-  if(data.text !== '') formData.append('text', data.text);
+  if(text !== '') formData.append('text', data.text);
   if(data.image !== null) formData.append('image', data.image);
   if(data.video !== null) formData.append('video', data.video);
   if(data.audio !== null) formData.append('audio', data.audio);
   fetch(
-    `http://startserver/API/?method=uploadPost`,
+    `http://startserver/API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
     {
       method: "POST",
       body: formData,
@@ -64,14 +63,12 @@ export async function uploadPost(data) {
 export function setStorage(avatar, login, description, posts) {
   localStorage.setItem("isLogin", true);
   localStorage.setItem("userName", login);
-  localStorage.setItem("avatar", avatar);
-  localStorage.setItem("description", description);
-  localStorage.setItem("posts", posts);
+  if(avatar) localStorage.setItem("avatar", avatar);
+  if(description) localStorage.setItem("description", description);
 }
 export function deleteStorage() {
   localStorage.removeItem("isLogin");
   localStorage.removeItem("userName");
   localStorage.removeItem("avatar");
   localStorage.removeItem("description");
-  localStorage.removeItem("posts");
 }

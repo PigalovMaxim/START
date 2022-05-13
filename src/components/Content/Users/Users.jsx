@@ -15,6 +15,7 @@ function Users() {
     if (data) setUsers(data);
   }
   function filterArray() {
+    if(users.length === 0) return [];
     return users.filter(value => value.userLogin.includes(filterStr)); 
   }
   useEffect(() => {

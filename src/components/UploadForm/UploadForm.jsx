@@ -74,13 +74,12 @@ function UploadForm() {
           classnames={s.btn}
           click={() => {
             const data = {
-                text: textInp.current.value,
                 image: photoInp.current.files[0] || null,
                 video: videoInp.current.files[0] || null,
                 audio: audioInp.current.files[0] || null
             };
-            if(data.text === '' && data.image === null && data.video === null && data.audio === null) return;
-            uploadPost(data);
+            if(data.image === null && data.video === null && data.audio === null) return;
+            uploadPost(data, textInp.current.value);
             history(`/Profile/${localStorage.getItem("userName")}`);
           }}
           text={"Выложить пост"}
