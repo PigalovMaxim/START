@@ -9,6 +9,7 @@ import undefinedUserIcon from "../../../imgs/undefinedUser.png";
 
 import s from "./MyProfile.module.scss";
 import { useNavigate } from "react-router-dom";
+import Posts from "../Posts/Posts";
 
 function MyProfile() {
   const [posts, setPosts] = useState([]);
@@ -16,7 +17,6 @@ function MyProfile() {
   async function getPosts() {
     if(!posts) return;
     const data = await getMyPosts();
-    console.log(data);
     if (data) setPosts(data);
   }
   useEffect(() => {
@@ -46,20 +46,7 @@ function MyProfile() {
           click={() => history("/UploadForm")}
           text="Выложить пост"
         />
-        {posts.map((value, index) => (
-          <Post
-            id={value.id}
-            avatar={value.avatar}
-            name={value.name}
-            text={value.text}
-            likes={value.likes}
-            date={value.date}
-            postImage={value.image}
-            audio={value.audio}
-            video={value.video}
-            key={index}
-          />
-        ))}
+        <Posts posts={posts}/>
       </div>
     </div>
   );

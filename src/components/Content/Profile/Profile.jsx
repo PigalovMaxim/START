@@ -6,6 +6,7 @@ import Post from "../../Post";
 import undefinedUserIcon from "../../../imgs/undefinedUser.png";
 
 import s from "./Profile.module.scss";
+import Posts from "../Posts/Posts";
 
 function Profile() {
   const [user, setUser] = useState({});
@@ -29,20 +30,7 @@ function Profile() {
       </div>
       <div className={s.posts}>
         {user.posts ? (
-          user.posts.map((value, index) => (
-            <Post
-              id={value.id}
-              avatar={user.avatar}
-              name={user.login}
-              text={value.text}
-              likes={value.likes}
-              date={value.date}
-              postImage={value.postImage}
-              audio={value.audio}
-              video={value.video}
-              key={index}
-            />
-          ))
+          <Posts posts={user.posts}/>
         ) : (
           <div />
         )}

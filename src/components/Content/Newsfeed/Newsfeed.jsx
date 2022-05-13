@@ -4,6 +4,7 @@ import { getNewsFeed } from "../../../common";
 
 import s from "./Newsfeed.module.scss";
 import { useEffect, useState } from "react";
+import Posts from "../Posts/Posts";
 
 function Newsfeed() {
   const [posts, setPosts] = useState([]);
@@ -19,20 +20,7 @@ function Newsfeed() {
     <div className={s.wrapper}>
       <div className={s.posts}>
         <label className={s.title}>Новостная лента</label>
-        {posts.map((value, index) => (
-          <Post
-            id={value.id}
-            avatar={value.avatar}
-            name={value.name}
-            text={value.text}
-            likes={value.likes}
-            date={value.date}
-            postImage={value.postImage}
-            audio={value.audio}
-            video={value.video}
-            key={index}
-          />
-        ))}
+        <Posts posts={posts}/>
       </div>
     </div>
   );

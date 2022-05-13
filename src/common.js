@@ -1,10 +1,12 @@
 import md5 from 'md5';
+//Переменные
+const SITE_LINK = 'http://startserver/';
 //Запросы
 export async function Login(login, password) {
   const rand = Math.round(Math.random() * 1000000);
   const hash = md5(md5(login + password) + rand);
   const answer = await fetch(
-    `http://startserver/API/?method=login&login=${login}&hash=${hash}&rand=${rand}`
+    `${SITE_LINK}API/?method=login&login=${login}&hash=${hash}&rand=${rand}`
   );
   const result = await answer.json();
   return result.data;
@@ -12,35 +14,35 @@ export async function Login(login, password) {
 export async function Registration(login, password, name) {
   const hash = md5(login + password);
   const answer = await fetch(
-    `http://startserver/API/?method=registration&login=${login}&hash=${hash}&name=${name}`
+    `${SITE_LINK}API/?method=registration&login=${login}&hash=${hash}&name=${name}`
   );
   const result = await answer.json();
   return result.data;
 }
 export async function getNewsFeed() {
     const answer = await fetch(
-      "http://startserver/API/?method=getNewsFeed"
+      `${SITE_LINK}API/?method=getNewsFeed&login=${localStorage.getItem('userLogin')}`
     );
     const result = await answer.json();
     return result.data;
 }
 export async function getUsers() {
   const answer = await fetch(
-    "http://startserver/API/?method=getUsers"
+    `${SITE_LINK}API/?method=getUsers`
   );
   const result = await answer.json();
   return result.data;
 }
 export async function getUserProfile(login) {
   const answer = await fetch(
-    `http://startserver/API/?method=getProfile&login=${login}`
+    `${SITE_LINK}API/?method=getProfile&login=${login}`
   );
   const result = await answer.json();
   return result.data;
 }
 export async function getMyPosts() {
   const answer = await fetch(
-    `http://startserver/API/?method=getPosts&login=${localStorage.getItem('userName')}`
+    `${SITE_LINK}API/?method=getPosts&login=${localStorage.getItem('userName')}`
   );
   const result = await answer.json();
   return result.data;
@@ -52,7 +54,7 @@ export async function uploadPost(data, text) {
   if(data.video !== null && data.video.size < 50000000) formData.append('video', data.video);
   if(data.audio !== null && data.audio.size < 10000000) formData.append('audio', data.audio);
   fetch(
-    `http://startserver/API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
+    `${SITE_LINK}API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
     {
       method: "POST",
       body: formData,
@@ -61,19 +63,19 @@ export async function uploadPost(data, text) {
 }
 export async function followUser() {
   const answer = await fetch(
-    "http://startserver/API/?method=getUsers"
+    `${SITE_LINK}API/?method=getUsers`
   );
   const result = await answer.json();
   return result.data;
 }
 export async function dislikePost(id) {
   const answer = await fetch(
-    `http://startserver/API/?method=dislike&id=${id}`
+    `${SITE_LINK}API/?method=dislike&id=${id}`
   );
 }
 export async function likePost(id) {
   const answer = await fetch(
-    `http://startserver/API/?method=like&id=${id}`
+    `${SITE_LINK}API/?method=like&id=${id}`
   );
 }
 //Работа с localStorage
