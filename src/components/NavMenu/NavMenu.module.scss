@@ -1,0 +1,18 @@
+.wrapper {
+    grid-area: nav;
+    background-color: #21202D;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 35px;
+    .navOption {
+        font-weight: 200;
+        margin-bottom: 15px;
+        width: 100%;
+        cursor: pointer;
+    }
+    .navOption:hover {
+        font-weight: 300;
+    }
+}

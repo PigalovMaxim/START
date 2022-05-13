@@ -1,0 +1,31 @@
+.wrapper {
+    grid-area: header;
+    background-color: #21202d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    .account {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .userName {
+            font-size: 20px;
+            font-weight: 100;
+            margin-right: 15px;
+        }
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+        .btn {
+            font-size: 14px;
+            height: 40px;
+            width: 70px;
+            margin-left: 20px;
+        }
+    }
+}
