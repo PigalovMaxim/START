@@ -10,6 +10,7 @@ import s from "./Post.module.scss";
 function Post(props) {
   const [likesCount, setLikesCount] = useState(props.likes ? props.likes : 0);
   const [isLikeClicked, setClicked] = useState(false);
+  console.log(props.postImage);
   return (
     <div className={s.wrapper}>
       <div className={s.postInfo}>

@@ -21,7 +21,7 @@ export async function Registration(login, password, name) {
 }
 export async function getNewsFeed() {
     const answer = await fetch(
-      `${SITE_LINK}API/?method=getNewsFeed&login=${localStorage.getItem('userLogin')}`
+      `${SITE_LINK}API/?method=getNewsFeed&login=${localStorage.getItem('userName')}`
     );
     const result = await answer.json();
     return result.data;
