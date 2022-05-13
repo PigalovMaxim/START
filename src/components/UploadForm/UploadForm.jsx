@@ -78,7 +78,7 @@ function UploadForm() {
                 video: videoInp.current.files[0] || null,
                 audio: audioInp.current.files[0] || null
             };
-            if(data.image === null && data.video === null && data.audio === null) return;
+            if(textInp.current.value === '' && data.image === null && data.video === null && data.audio === null) return;
             uploadPost(data, textInp.current.value);
             history(`/Profile/${localStorage.getItem("userName")}`);
           }}

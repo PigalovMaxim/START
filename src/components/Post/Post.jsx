@@ -1,9 +1,11 @@
 import { useState } from "react";
 import likeIcon from "../../imgs/like.png";
 import likeActiveIcon from "../../imgs/likeActive.png";
+import { likePost, dislikePost } from "../../common";
 import Audio from "./Audio";
 import undefinedUserIcon from "../../imgs/undefinedUser.png";
 import s from "./Post.module.scss";
+
 
 function Post(props) {
   const [likesCount, setLikesCount] = useState(props.likes ? props.likes : 0);
@@ -37,8 +39,13 @@ function Post(props) {
         {props.audio ? <Audio SRC={props.audio} /> : <div />}
         <div
           onClick={() => {
-            if (isLikeClicked) setLikesCount(likesCount - 1);
-            else setLikesCount(likesCount + 1);
+            if (isLikeClicked) {
+              setLikesCount(likesCount - 1);
+              dislikePost(props.id);
+            } else {
+              setLikesCount(likesCount + 1);
+              likePost(props.id);
+            }
             setClicked(!isLikeClicked);
           }}
           className={s.postInteractive}

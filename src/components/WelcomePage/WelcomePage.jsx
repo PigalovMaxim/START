@@ -22,6 +22,7 @@ function WelcomePage(props) {
   }
   async function login () {
     const data = await Login(loginInp.current.value, passInp.current.value);
+    console.log(data);
     if(!data) return;
     props.setUserLogin(true);
     setStorage(data.avatar, data.login, data.description, data.posts);

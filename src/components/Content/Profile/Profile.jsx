@@ -31,6 +31,7 @@ function Profile() {
         {user.posts ? (
           user.posts.map((value, index) => (
             <Post
+              id={value.id}
               avatar={user.avatar}
               name={user.login}
               text={value.text}

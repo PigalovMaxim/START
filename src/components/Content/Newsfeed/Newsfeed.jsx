@@ -21,6 +21,7 @@ function Newsfeed() {
         <label className={s.title}>Новостная лента</label>
         {posts.map((value, index) => (
           <Post
+            id={value.id}
             avatar={value.avatar}
             name={value.name}
             text={value.text}

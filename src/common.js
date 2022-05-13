@@ -38,25 +38,42 @@ export async function getUserProfile(login) {
   const result = await answer.json();
   return result.data;
 }
-export async function getMyPosts(login) {
+export async function getMyPosts() {
   const answer = await fetch(
-    `http://startserver/API/?method=getPosts&login=${login}`
+    `http://startserver/API/?method=getPosts&login=${localStorage.getItem('userName')}`
   );
   const result = await answer.json();
   return result.data;
 }
 export async function uploadPost(data, text) {
   const formData = new FormData();
-  if(text !== '') formData.append('text', data.text);
-  if(data.image !== null) formData.append('image', data.image);
-  if(data.video !== null) formData.append('video', data.video);
-  if(data.audio !== null) formData.append('audio', data.audio);
+  //Ограничение на картинку и песню 10 МБ, а на видео 50 МБ
+  if(data.image !== null && data.image.size < 10000000) formData.append('image', data.image);
+  if(data.video !== null && data.video.size < 50000000) formData.append('video', data.video);
+  if(data.audio !== null && data.audio.size < 10000000) formData.append('audio', data.audio);
   fetch(
     `http://startserver/API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
     {
       method: "POST",
       body: formData,
     }
+  );
+}
+export async function followUser() {
+  const answer = await fetch(
+    "http://startserver/API/?method=getUsers"
+  );
+  const result = await answer.json();
+  return result.data;
+}
+export async function dislikePost(id) {
+  const answer = await fetch(
+    `http://startserver/API/?method=dislike&id=${id}`
+  );
+}
+export async function likePost(id) {
+  const answer = await fetch(
+    `http://startserver/API/?method=like&id=${id}`
   );
 }
 //Работа с localStorage
