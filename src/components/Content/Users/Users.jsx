@@ -16,7 +16,7 @@ function Users() {
   }
   function filterArray() {
     if(users.length === 0) return [];
-    return users.filter(value => value.userLogin.includes(filterStr)); 
+    return users.filter(value => value.login.includes(filterStr) && value.login !== localStorage.getItem('userName')); 
   }
   useEffect(() => {
     getUsersResponse();
@@ -35,12 +35,12 @@ function Users() {
       <Input refer={filterInp} wrapclx={s.inp} text="Введите имя пользователя" />
       <div className={s.users}>
         {filterArray().map((value, index) => (
-          <div onClick={() => history(`/Profile/${value.userLogin}`)} key={index} className={s.user}>
+          <div onClick={() => history(`/Profile/${value.login}`)} key={index} className={s.user}>
             <img
               className={s.avatar}
               src={value.avatar ? value.avatar : ErrorAvatar}
             />
-            <label className={s.name}>{value.userLogin}</label>
+            <label className={s.name}>{value.login}</label>
           </div>
         ))}
       </div>
