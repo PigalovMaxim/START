@@ -79,12 +79,12 @@ export async function followUser() {
 }
 export function dislikePost(id) {
   fetch(
-    `${SITE_LINK}API/?method=dislike&id=${id}`
+    `${SITE_LINK}API/?method=dislike&id=${id}&login=${localStorage.getItem('userName')}`
   );
 }
 export function likePost(id) {
   fetch(
-    `${SITE_LINK}API/?method=like&id=${id}`
+    `${SITE_LINK}API/?method=like&id=${id}&login=${localStorage.getItem('userName')}`
   );
 }
 export async function follow(login) {
