@@ -44,7 +44,7 @@ export async function getUsers() {
 }
 export async function getUserProfile(login) {
   const answer = await fetch(
-    `${SITE_LINK}API/?method=getProfile&login=${login}`
+    `${SITE_LINK}API/?method=getProfile&login=${login}&requestor=${localStorage.getItem('userName')}`
   );
   const result = await answer.json();
   return result.data;
@@ -89,12 +89,12 @@ export function likePost(id) {
 }
 export async function follow(login) {
   fetch(
-    `${SITE_LINK}API/?method=follow&login=${login}`
+    `${SITE_LINK}API/?method=follow&userLogin=${login}&followerLogin=${localStorage.getItem('userName')}`
   );
 }
 export async function unfollow(login) {
   fetch(
-    `${SITE_LINK}API/?method=unfollow&login=${login}`
+    `${SITE_LINK}API/?method=unfollow&userLogin=${login}&followerLogin=${localStorage.getItem('userName')}`
   );
 }
 export async function changeProfileSettings(avatar, name, description) {
