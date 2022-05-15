@@ -12,7 +12,17 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
+        position: relative;
         width: 100%;
+        .btnSettings {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 12px;
+            width: fit-content;
+            height: fit-content;
+            padding: 5px 10px;
+        }
         img {
             width: 165px;
             height: 165px;
@@ -48,6 +58,52 @@
             min-height: 50px;
             font-size: 20px;
             margin-bottom: 30px;
+        }
+    }
+}
+@media (max-width: 580px) {
+    .wrapper {
+        padding: 10px;
+        .userInfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            .btnSettings {
+                position: relative;
+                font-size: 18px;
+                width: 100%;
+                padding: 15px;
+                margin-top: 30px;
+            }
+            .text {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 0;
+                .name {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+                .description {
+                    font-size: 15px;
+                    width: 100%;
+                    margin-top: 10px;
+                }
+            }
+        }
+        .posts {
+            width: 100%;
+            .btn {
+                font-size: 18px;
+                height: fit-content;
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
         }
     }
 }

@@ -32,3 +32,23 @@
         width: 95px;
     }
 }
+@media (max-width: 500px) {
+    .audio {
+        padding: 0 15px;
+        .progressBar {
+            width: 55%;
+        }
+    }
+}
+@media (max-width: 420px) {
+    .audio {
+        padding: 0 15px;
+        .progressBar {
+            width: 45%;
+        }
+        .time {
+            width: 75px;
+            font-size: 12px;
+        }
+    }
+}

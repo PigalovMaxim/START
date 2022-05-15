@@ -1,7 +1,9 @@
-import cn from "classnames";
+//Зависимости
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { uploadPost } from "../../common";
+import { LINKS, uploadPost } from "../../common";
+import cn from "classnames";
+//Другое
 import Button from "../Button/Button";
 import s from "./UploadForm.module.scss";
 
@@ -80,14 +82,14 @@ function UploadForm() {
             };
             if(textInp.current.value === '' && data.image === null && data.video === null && data.audio === null) return;
             uploadPost(data, textInp.current.value);
-            history(`/Profile/${localStorage.getItem("userName")}`);
+            history(LINKS.MY_PROFILE);
           }}
           text={"Выложить пост"}
         />
         <Button
           classnames={s.exitButton}
           click={() => {
-            history(`/Profile/${localStorage.getItem("userName")}`);
+            history(LINKS.MY_PROFILE);
           }}
           text={"Назад"}
         />

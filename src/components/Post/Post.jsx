@@ -1,23 +1,43 @@
+//Зависимости
 import { useState } from "react";
+import { likePost, dislikePost } from "../../common";
+//Фотографии
 import likeIcon from "../../imgs/like.png";
 import likeActiveIcon from "../../imgs/likeActive.png";
-import { likePost, dislikePost } from "../../common";
-import Audio from "./Audio";
 import undefinedUserIcon from "../../imgs/undefinedUser.png";
+//Компоненты
+import Audio from "./Audio";
+//Другое
 import s from "./Post.module.scss";
 
 
 function Post(props) {
-  const [likesCount, setLikesCount] = useState(props.likes ? props.likes : 0);
+  const [likesCount, setLikesCount] = useState(props.likes ? props.likes - 0 : 0);
   const [isLikeClicked, setClicked] = useState(false);
-  console.log(props.postImage);
+  function makeRightData() {
+    const months=[
+         'Янв',
+         'Февр',
+         'Мар',
+         'Апр',
+         'Мая',
+         'Июн',
+         'Июл',
+         'Авг',
+         'Сен',
+         'Ноя',
+         'Дек',
+      ];
+    let strArr = props.date.substring(0, 10).split('-');
+    return parseInt(strArr[2]) + ' ' + months[parseInt(strArr[1]) - 1] + ' ' + strArr[0].substring(2) + ' в ' + (parseInt(props.date.substring(11, 13)) + 1) + ':' + props.date.substring(14, 16);
+  }
   return (
     <div className={s.wrapper}>
       <div className={s.postInfo}>
         <img src={props.avatar ? props.avatar : undefinedUserIcon} />
         <div className={s.text}>
           <label className={s.name}>{props.name}</label>
-          <label className={s.date}>{props.date}</label>
+          <label className={s.date}>{makeRightData()}</label>
         </div>
       </div>
       <div className={s.postContent}>
@@ -29,7 +49,6 @@ function Post(props) {
         )}
         {props.video ? (
           <video
-            muted="muted"
             className={s.visual}
             src={props.video}
             controls="controls"

@@ -124,4 +124,10 @@
 .wrapper .postContent .postInteractive * {
   cursor: pointer;
 }
+
+@media (max-width: 370px) {
+  .wrapper {
+    padding: 15px;
+  }
+}
 /*# sourceMappingURL=Post.module.css.map */

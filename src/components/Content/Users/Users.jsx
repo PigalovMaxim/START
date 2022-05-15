@@ -1,8 +1,11 @@
+//Зависимости
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUsers } from "../../../common";
-import ErrorAvatar from "../../../imgs/undefinedUser.png";
+import { getUsers, LINKS } from "../../../common";
+//Компоненты
 import Input from "../../Input";
+//Другое
+import ErrorAvatar from "../../../imgs/undefinedUser.png";
 import s from "./Users.module.scss";
 
 function Users() {
@@ -32,10 +35,10 @@ function Users() {
   return (
     <div className={s.wrapper}>
       <label className={s.title}>Поиск пользователей</label>
-      <Input refer={filterInp} wrapclx={s.inp} text="Введите имя пользователя" />
+      <Input refer={filterInp} wrapclx={s.inp} classnames={s.realInp} text="Введите имя пользователя" />
       <div className={s.users}>
         {filterArray().map((value, index) => (
-          <div onClick={() => history(`/Profile/${value.login}`)} key={index} className={s.user}>
+          <div onClick={() => history(`${LINKS.PROFILE}/${value.login}`)} key={index} className={s.user}>
             <img
               className={s.avatar}
               src={value.avatar ? value.avatar : ErrorAvatar}

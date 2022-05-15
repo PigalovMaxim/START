@@ -1,0 +1,8 @@
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+Header add Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET,POST"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"

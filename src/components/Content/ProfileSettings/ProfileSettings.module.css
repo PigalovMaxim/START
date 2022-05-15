@@ -1,0 +1,173 @@
+.settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 25px;
+}
+
+.settings .title {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.settings .block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+}
+
+.settings .block .settingsName {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.settings .block #avatarPhoto {
+  display: none;
+}
+
+.settings .block .labelFor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 450px;
+  height: 60px;
+  background-color: #313041;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.settings .block .labelFor:hover {
+  background-color: #414052;
+}
+
+.settings .block .active {
+  background-color: #24e24d;
+}
+
+.settings .block .active:hover {
+  background-color: #12c238;
+}
+
+.settings .block .inp {
+  padding: 15px;
+}
+
+.settings .block .textArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: #313041;
+  resize: none;
+  padding: 10px;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+@media (max-height: 770px) {
+  .settings {
+    padding: 10px;
+  }
+  .settings .title {
+    font-size: 20px;
+  }
+  .settings .block {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .settings .block .settingsName {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .settings .block .textArea {
+    height: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .settings {
+    padding: 10px;
+  }
+  .settings .title {
+    font-size: 20px;
+  }
+  .settings .block {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .settings .block .settingsName {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .settings .block .labelFor {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #313041;
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    cursor: pointer;
+  }
+}
+/*# sourceMappingURL=ProfileSettings.module.css.map */

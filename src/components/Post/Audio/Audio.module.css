@@ -46,4 +46,26 @@
 .audio .time {
   width: 95px;
 }
+
+@media (max-width: 500px) {
+  .audio {
+    padding: 0 15px;
+  }
+  .audio .progressBar {
+    width: 55%;
+  }
+}
+
+@media (max-width: 420px) {
+  .audio {
+    padding: 0 15px;
+  }
+  .audio .progressBar {
+    width: 45%;
+  }
+  .audio .time {
+    width: 75px;
+    font-size: 12px;
+  }
+}
 /*# sourceMappingURL=Audio.module.css.map */

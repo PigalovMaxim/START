@@ -1,3 +1,4 @@
+$menu_width: 180px;
 .wrapper {
     grid-area: nav;
     background-color: #21202D;
@@ -5,7 +6,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    width: $menu_width;
     padding: 35px;
+    .btn {
+        width: 100%;
+        height: 30px;
+        margin-top: 30px;
+        background-color: transparent;
+        font-size: 15px; 
+    }
     .navOption {
         font-weight: 200;
         margin-bottom: 15px;
@@ -14,5 +23,19 @@
     }
     .navOption:hover {
         font-weight: 300;
+    }
+}
+@media (max-width: 930px) {
+    .wrapper {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transition: left 0.25s ease-in-out;
+        box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.151);
+    }
+    .closed {
+        left: -$menu_width;
     }
 }

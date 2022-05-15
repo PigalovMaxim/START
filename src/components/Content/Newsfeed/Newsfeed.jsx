@@ -1,17 +1,18 @@
-import Post from "../../Post";
-
-import { getNewsFeed } from "../../../common";
-
-import s from "./Newsfeed.module.scss";
+//Зависимости
 import { useEffect, useState } from "react";
+import { getNewsFeed } from "../../../common";
+//Компоненты
 import Posts from "../Posts/Posts";
+//Другое
+import s from "./Newsfeed.module.scss";
+
+
 
 function Newsfeed() {
   const [posts, setPosts] = useState([]);
   async function getPosts() {
     const data = await getNewsFeed();
-    if (!data) return;
-    setPosts(data);
+    if (data) setPosts(data);
   }
   useEffect(() => {
     getPosts();

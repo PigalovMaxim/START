@@ -1,6 +1,15 @@
 import md5 from 'md5';
 //Переменные
-const SITE_LINK = 'http://startserver/';
+const SITE_LINK = 'http://startserver/'; //'http://ssstart.ru/'
+export const LINKS = {
+  WELCOME: '/Welcome',
+  UPLOAD_FORM: '/UploadForm',
+  MY_PROFILE: `/Profile/${localStorage.getItem('userName')}`,
+  PROFILE: '/Profile',
+  USERS: '/Users',
+  NEWSFEED: '/Newsfeed',
+  PROFILE_SETTINGS: '/ProfileSettings',
+};
 //Запросы
 export async function Login(login, password) {
   const rand = Math.round(Math.random() * 1000000);
@@ -68,26 +77,46 @@ export async function followUser() {
   const result = await answer.json();
   return result.data;
 }
-export async function dislikePost(id) {
-  const answer = await fetch(
+export function dislikePost(id) {
+  fetch(
     `${SITE_LINK}API/?method=dislike&id=${id}`
   );
 }
-export async function likePost(id) {
-  const answer = await fetch(
+export function likePost(id) {
+  fetch(
     `${SITE_LINK}API/?method=like&id=${id}`
   );
 }
+export async function follow(login) {
+  fetch(
+    `${SITE_LINK}API/?method=follow&login=${login}`
+  );
+}
+export async function unfollow(login) {
+  fetch(
+    `${SITE_LINK}API/?method=unfollow&login=${login}`
+  );
+}
+export async function changeProfileSettings(avatar, name, description) {
+  fetch(
+    `${SITE_LINK}API/?method=changeProfileSettings&login=${localStorage.getItem('userName')}&avatar=${avatar}&name=${name}&description=${description}`
+  );
+  if(avatar) localStorage.setItem("avatar", avatar);
+  if(description) localStorage.setItem("description", description);
+  if(name) localStorage.setItem("name", name);
+}
 //Работа с localStorage
-export function setStorage(avatar, login, description, posts) {
+export function setStorage(avatar, login, description, name) {
   localStorage.setItem("isLogin", true);
   localStorage.setItem("userName", login);
+  localStorage.setItem("name", name);
   if(avatar) localStorage.setItem("avatar", avatar);
   if(description) localStorage.setItem("description", description);
 }
 export function deleteStorage() {
   localStorage.removeItem("isLogin");
   localStorage.removeItem("userName");
+  localStorage.removeItem("name");
   localStorage.removeItem("avatar");
   localStorage.removeItem("description");
 }

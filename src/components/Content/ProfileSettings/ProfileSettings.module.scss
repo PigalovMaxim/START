@@ -1,0 +1,109 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    .title {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    .block {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        .settingsName {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        #avatarPhoto {
+            display: none;
+        }
+        .labelFor {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 450px;
+            height: 60px;
+            background-color: #313041;
+            transition: background-color 0.25s ease-in-out;
+            cursor: pointer;
+        }
+        .labelFor:hover {
+            background-color: #414052;
+        }
+        .active {
+            background-color: #24e24d;
+        }
+        .active:hover {
+            background-color: #12c238;
+        }
+        .inp {
+            padding: 15px;
+        }
+        .textArea {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            background-color: #313041;
+            resize: none;
+            padding: 10px;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 30px;
+        }
+    }
+}
+@media (max-height: 770px) {
+    .settings {
+        padding: 10px;
+        .title {
+            font-size: 20px;
+        }
+        .block {
+            height: fit-content;
+            .settingsName {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 15px;
+            }
+            .textArea {
+                height: 100px;
+            }
+        }
+    }
+}
+@media (max-width: 500px) {
+    .settings {
+        padding: 10px;
+        .title {
+            font-size: 20px;
+        }
+        .block {
+            height: fit-content;
+            .settingsName {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+            .labelFor {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 60px;
+                background-color: #313041;
+                transition: background-color 0.25s ease-in-out;
+                cursor: pointer;
+            }
+        }
+    }
+}

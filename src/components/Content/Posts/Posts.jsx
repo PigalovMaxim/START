@@ -1,10 +1,8 @@
 import Post from "../../Post";
-
 import s from "./Posts.module.scss";
 
 function Posts(props) {
   function reverseArr(){
-      console.log(props.posts);
       const arr = props.posts.slice(0);
       const rev = arr.reverse();
       return rev;
@@ -14,8 +12,8 @@ function Posts(props) {
         {reverseArr().map((value, index) => (
           <Post
             id={value.id}
-            avatar={value.avatar}
-            name={value.name}
+            avatar={value.avatar ? value.avatar : props.avatar}
+            name={value.name ? value.name : props.name}
             text={value.text}
             likes={value.likes}
             date={value.date}

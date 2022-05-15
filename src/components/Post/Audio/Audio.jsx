@@ -1,7 +1,9 @@
-import cn from "classnames";
+//Зависимости
 import { useEffect, useRef, useState } from "react";
+//Фотографии
 import pause from '../../../imgs/pauseButton.png';
 import play from '../../../imgs/playButton.png';
+//Другое
 import s from "./Audio.module.scss";
 
 function Audio(props) {
