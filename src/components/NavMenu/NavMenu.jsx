@@ -18,7 +18,7 @@ function NavMenu(props) {
       <Link to={LINKS.NEWSFEED} className={s.navOption}>
         Лента
       </Link>
-      <Link to={LINKS.MY_PROFILE} className={s.navOption}>
+      <Link to={`${LINKS.PROFILE}/${localStorage.getItem('userName')}`} className={s.navOption}>
         Профиль
       </Link>
       <Link to={LINKS.USERS} className={s.navOption}>

@@ -18,6 +18,7 @@ function Posts(props) {
             likes={value.likes}
             date={value.date}
             postImage={value.image}
+            isUserLiked={value.isUserLiked}
             audio={value.audio}
             video={value.video}
             key={index}

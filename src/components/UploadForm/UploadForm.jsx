@@ -82,14 +82,14 @@ function UploadForm() {
             };
             if(textInp.current.value === '' && data.image === null && data.video === null && data.audio === null) return;
             uploadPost(data, textInp.current.value);
-            history(LINKS.MY_PROFILE);
+            history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
           }}
           text={"Выложить пост"}
         />
         <Button
           classnames={s.exitButton}
           click={() => {
-            history(LINKS.MY_PROFILE);
+            history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
           }}
           text={"Назад"}
         />

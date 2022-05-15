@@ -13,7 +13,7 @@ import s from "./Post.module.scss";
 
 function Post(props) {
   const [likesCount, setLikesCount] = useState(props.likes ? props.likes - 0 : 0);
-  const [isLikeClicked, setClicked] = useState(false);
+  const [isLikeClicked, setClicked] = useState(props.isUserLiked ? props.isUserLiked : false);
   function makeRightData() {
     const months=[
          'Янв',

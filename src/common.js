@@ -1,10 +1,9 @@
 import md5 from 'md5';
 //Переменные
-const SITE_LINK = 'http://startserver/'; //'http://ssstart.ru/'
+const SITE_LINK = 'http://ssstart.ru/'; //'http://ssstart.ru/'
 export const LINKS = {
   WELCOME: '/Welcome',
   UPLOAD_FORM: '/UploadForm',
-  MY_PROFILE: `/Profile/${localStorage.getItem('userName')}`,
   PROFILE: '/Profile',
   USERS: '/Users',
   NEWSFEED: '/Newsfeed',

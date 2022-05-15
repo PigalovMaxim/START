@@ -19,7 +19,7 @@ function Content(props) {
           <Route path="*" element={<div className={s.unchoosen}>{(window.screen.width <= 930) ? 'Свайпните вправо, что бы открыть меню' : 'Выберите меню слева'}</div>} />
           <Route path={LINKS.NEWSFEED} element={<Newsfeed />} />
           <Route path={LINKS.USERS} element={<Users />} />
-          <Route path={LINKS.MY_PROFILE} element={<MyProfile />} />
+          <Route path={`${LINKS.PROFILE}/${localStorage.getItem('userName')}`} element={<MyProfile />} />
           <Route path={`${LINKS.PROFILE}/*`} element={<Profile />} />
           <Route path={LINKS.PROFILE_SETTINGS} element={<ProfileSettings/>}/>
         </Routes>

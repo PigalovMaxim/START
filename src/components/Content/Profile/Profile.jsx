@@ -17,6 +17,7 @@ function Profile() {
   async function getUserData() {
     const data = await getUserProfile(params["*"]);
     if (data) setUser(data);
+    setFollow(data.isFollowed);
   }
   useEffect(() => {
     getUserData();

@@ -18,7 +18,7 @@ function ProfileSettings() {
   function pushData() {
     if(!photoInp.current.files[0] && descInp.current.value === '' && nameInp.current.value === '') return;
     changeProfileSettings(photoInp.current.files[0], nameInp.current.value, descInp.current.value);
-    history(LINKS.MY_PROFILE);
+    history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
   }
   return (
     <div className={s.settings}>
