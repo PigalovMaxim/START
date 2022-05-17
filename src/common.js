@@ -77,8 +77,14 @@ export async function updateDescription(description) {
   return result.data;
 }
 export async function updateAvatar(avatar) {
+  const formData = new FormData();
+  if(avatar !== null && avatar.size < 10000000) formData.append('avatar', avatar);
   const answer = await fetch(
-    `${SITE_LINK}API/?method=updateAvatar&login=${localStorage.getItem('userName')}&avatar=${avatar}`
+    `${SITE_LINK}API/?method=updateAvatar&login=${localStorage.getItem('userName')}`,
+    {
+      method: "POST",
+      body: formData,
+    }
   );
   const result = await answer.json();
   return result.data;
