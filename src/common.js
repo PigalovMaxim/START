@@ -74,7 +74,7 @@ export async function updateDescription(description) {
     `${SITE_LINK}API/?method=updateDescription&login=${localStorage.getItem('userName')}&description=${description}`
   );
   const result = await answer.json();
-  return result.data;
+  if(result.data) localStorage.setItem("description", description);
 }
 export async function updateAvatar(avatar) {
   const formData = new FormData();
@@ -87,14 +87,14 @@ export async function updateAvatar(avatar) {
     }
   );
   const result = await answer.json();
-  return result.data;
+  if(result.data) localStorage.setItem("avatar", avatar);
 }
 export async function updateName(name) {
   const answer = await fetch(
     `${SITE_LINK}API/?method=updateName&login=${localStorage.getItem('userName')}&name=${name}`
   );
   const result = await answer.json();
-  return result.data;
+  if(result.data) localStorage.setItem("name", name);
 }
 export function dislikePost(id) {
   fetch(
