@@ -1,6 +1,6 @@
 import md5 from 'md5';
 //Переменные
-const SITE_LINK = 'http://ssstart.ru/'; //'http://ssstart.ru/'
+const SITE_LINK = 'http://startserver/'; //'https://ssstart.ru/'
 export const LINKS = {
   WELCOME: '/Welcome',
   UPLOAD_FORM: '/UploadForm',
@@ -69,9 +69,23 @@ export async function uploadPost(data, text) {
     }
   );
 }
-export async function followUser() {
+export async function updateDescription(description) {
   const answer = await fetch(
-    `${SITE_LINK}API/?method=getUsers`
+    `${SITE_LINK}API/?method=updateDescription&login=${localStorage.getItem('userName')}&description=${description}`
+  );
+  const result = await answer.json();
+  return result.data;
+}
+export async function updateAvatar(avatar) {
+  const answer = await fetch(
+    `${SITE_LINK}API/?method=updateAvatar&login=${localStorage.getItem('userName')}&avatar=${avatar}`
+  );
+  const result = await answer.json();
+  return result.data;
+}
+export async function updateName(name) {
+  const answer = await fetch(
+    `${SITE_LINK}API/?method=updateName&login=${localStorage.getItem('userName')}&name=${name}`
   );
   const result = await answer.json();
   return result.data;
@@ -96,14 +110,7 @@ export async function unfollow(login) {
     `${SITE_LINK}API/?method=unfollow&userLogin=${login}&followerLogin=${localStorage.getItem('userName')}`
   );
 }
-export async function changeProfileSettings(avatar, name, description) {
-  fetch(
-    `${SITE_LINK}API/?method=changeProfileSettings&login=${localStorage.getItem('userName')}&avatar=${avatar}&name=${name}&description=${description}`
-  );
-  if(avatar) localStorage.setItem("avatar", avatar);
-  if(description) localStorage.setItem("description", description);
-  if(name) localStorage.setItem("name", name);
-}
+
 //Работа с localStorage
 export function setStorage(avatar, login, description, name) {
   localStorage.setItem("isLogin", true);

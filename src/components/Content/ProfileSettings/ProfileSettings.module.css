@@ -14,42 +14,25 @@
           align-items: center;
   height: 100%;
   width: 100%;
-  padding: 25px;
+  padding: 20px;
 }
 
 .settings .title {
   font-size: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-.settings .block {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 100%;
-}
-
-.settings .block .settingsName {
+.settings .settingsName {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 20px;
 }
 
-.settings .block #avatarPhoto {
+.settings #avatarPhoto {
   display: none;
 }
 
-.settings .block .labelFor {
+.settings .labelFor {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,23 +54,23 @@
   cursor: pointer;
 }
 
-.settings .block .labelFor:hover {
+.settings .labelFor:hover {
   background-color: #414052;
 }
 
-.settings .block .active {
+.settings .active {
   background-color: #24e24d;
 }
 
-.settings .block .active:hover {
+.settings .active:hover {
   background-color: #12c238;
 }
 
-.settings .block .inp {
+.settings .inp {
   padding: 15px;
 }
 
-.settings .block .textArea {
+.settings .textArea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -105,8 +88,19 @@
   resize: none;
   padding: 10px;
   width: 100%;
-  height: 300px;
-  margin-bottom: 30px;
+  height: 100px;
+}
+
+.settings .btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 10px 25px;
+  font-size: 20px;
+  margin-top: 15px;
 }
 
 @media (max-height: 770px) {
@@ -116,17 +110,12 @@
   .settings .title {
     font-size: 20px;
   }
-  .settings .block {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-  }
-  .settings .block .settingsName {
+  .settings .settingsName {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 15px;
   }
-  .settings .block .textArea {
+  .settings .textArea {
     height: 100px;
   }
 }
@@ -138,17 +127,12 @@
   .settings .title {
     font-size: 20px;
   }
-  .settings .block {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-  }
-  .settings .block .settingsName {
+  .settings .settingsName {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 16px;
   }
-  .settings .block .labelFor {
+  .settings .labelFor {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

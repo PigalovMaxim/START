@@ -1,8 +1,13 @@
+RewriteEngine on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
 RewriteBase /
 RewriteRule ^index\.html$ - [L]
  RewriteCond %{REQUEST_FILENAME} !-f
  RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
-Header add Access-Control-Allow-Origin "*"
+
+Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods "GET,POST"
 Header set Access-Control-Allow-Headers "Content-Type, Authorization"

@@ -5,17 +5,11 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    padding: 25px;
+    padding: 20px;
     .title {
         font-size: 30px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
-    .block {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
         .settingsName {
             margin-top: 10px;
             margin-bottom: 10px;
@@ -56,10 +50,15 @@
             resize: none;
             padding: 10px;
             width: 100%;
-            height: 300px;
-            margin-bottom: 30px;
+            height: 100px;
         }
-    }
+        .btn {
+            width: fit-content;
+            height: fit-content;
+            padding: 10px 25px;
+            font-size: 20px;
+            margin-top: 15px;
+        }
 }
 @media (max-height: 770px) {
     .settings {
@@ -67,8 +66,6 @@
         .title {
             font-size: 20px;
         }
-        .block {
-            height: fit-content;
             .settingsName {
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -77,7 +74,6 @@
             .textArea {
                 height: 100px;
             }
-        }
     }
 }
 @media (max-width: 500px) {
@@ -86,8 +82,6 @@
         .title {
             font-size: 20px;
         }
-        .block {
-            height: fit-content;
             .settingsName {
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -104,6 +98,5 @@
                 transition: background-color 0.25s ease-in-out;
                 cursor: pointer;
             }
-        }
     }
 }
