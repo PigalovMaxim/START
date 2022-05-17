@@ -87,7 +87,7 @@ export async function updateAvatar(avatar) {
     }
   );
   const result = await answer.json();
-  if(result.data) localStorage.setItem("avatar", avatar);
+  if(result.data) localStorage.setItem("avatar", result.data);
 }
 export async function updateName(name) {
   const answer = await fetch(
