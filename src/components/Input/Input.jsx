@@ -7,6 +7,7 @@ function Input(props) {
       {props.img ? <img src={props.img}/> : <div/>}
       <input
         ref={props.refer}
+        onChange={props.change ? () => props.change() : () => {}}
         className={cn(s.inp, props.classnames ? props.classnames : "")}
         placeholder={props.text ? props.text : ""}
       />

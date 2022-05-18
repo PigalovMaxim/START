@@ -11,11 +11,27 @@ function UploadForm() {
   const [isPhotoUploaded, setPhotoUploaded] = useState(false);
   const [isVideoUploaded, setVideoUploaded] = useState(false);
   const [isAudioUploaded, setAudioUploaded] = useState(false);
+  const [photoText, setPhotoText] = useState('');
+  const [videoText, setVideoText] = useState('');
+  const [audioText, setAudioText] = useState('');
   const textInp = useRef();
   const photoInp = useRef();
   const videoInp = useRef();
   const audioInp = useRef();
   const history = useNavigate();
+  function setText(file, setUploaded, setItemText) {
+    if (file.files.length === 0) {
+      setUploaded(false);
+      return;
+    }
+    if (
+      file.files[file.files.length - 1] &&
+      file.files[file.files.length - 1].name &&
+      file.files[file.files.length - 1].name.length >= 50
+    )
+    setItemText(file.files[file.files.length - 1].name.substr(0, 30) + "...");
+    else setItemText(file.files[file.files.length - 1].name);
+  }
   return (
     <div className={s.wrapper}>
       <div className={s.form}>
@@ -31,13 +47,18 @@ function UploadForm() {
             ref={photoInp}
             className={s.hideInput}
             id="postPhoto"
-            onChange={() => setPhotoUploaded(true)}
+            onChange={() => {
+              setPhotoUploaded(true);
+              setText(photoInp.current, setPhotoUploaded, setPhotoText);
+            }}
           />
           <label
             className={cn(s.inputLabel, isPhotoUploaded ? s.active : "")}
             htmlFor="postPhoto"
           >
-            {isPhotoUploaded ? `Загружено фото: ${(photoInp.current.files[0].name.length >= 50) ? photoInp.current.files[0].name.substr(0, 30) + '...' : photoInp.current.files[0].name}` : 'Загрузить фото'}
+            {isPhotoUploaded
+              ? `Загружено фото: ${photoText}`
+              : "Загрузить фото"}
           </label>
           <label className={s.text}>Выложите видео</label>
           <input
@@ -47,13 +68,18 @@ function UploadForm() {
             ref={videoInp}
             className={s.hideInput}
             id="postVideo"
-            onChange={() => setVideoUploaded(true)}
+            onChange={() => {
+              setVideoUploaded(true);
+              setText(videoInp.current, setVideoUploaded, setVideoText);
+            }}
           />
           <label
             className={cn(s.inputLabel, isVideoUploaded ? s.active : "")}
             htmlFor="postVideo"
           >
-            {isVideoUploaded ? `Загружено видео: ${(videoInp.current.files[0].name.length >= 30) ?  videoInp.current.files[0].name.substr(0, 30) + '...' : videoInp.current.files[0].name}` : 'Загрузить видео'}
+            {isVideoUploaded
+              ? `Загружено видео: ${videoText}`
+              : "Загрузить видео"}
           </label>
           <label className={s.text}>Выложите аудио</label>
           <input
@@ -63,33 +89,44 @@ function UploadForm() {
             ref={audioInp}
             className={s.hideInput}
             id="postAudio"
-            onChange={() => setAudioUploaded(true)}
+            onChange={() => {
+              setAudioUploaded(true);
+              setText(audioInp.current, setVideoUploaded, setAudioText);
+            }}
           />
           <label
             className={cn(s.inputLabel, isAudioUploaded ? s.active : "")}
             htmlFor="postAudio"
           >
-            {isAudioUploaded ? `Загружено аудио: ${(audioInp.current.files[0].name.length >= 30) ? audioInp.current.files[0].name.substr(0, 30) + '...' : audioInp.current.files[0].name}` : 'Загрузить аудио'}
+            {isAudioUploaded
+              ? `Загружено аудио: ${audioText}`
+              : "Загрузить аудио"}
           </label>
         </div>
         <Button
           classnames={s.btn}
           click={() => {
             const data = {
-                image: photoInp.current.files[0] || null,
-                video: videoInp.current.files[0] || null,
-                audio: audioInp.current.files[0] || null
+              image: photoInp.current.files[photoInp.current.files.length - 1] || null,
+              video: videoInp.current.files[videoInp.current.files.length - 1] || null,
+              audio: audioInp.current.files[audioInp.current.files.length - 1] || null,
             };
-            if(textInp.current.value === '' && data.image === null && data.video === null && data.audio === null) return;
+            if (
+              textInp.current.value === "" &&
+              data.image === null &&
+              data.video === null &&
+              data.audio === null
+            )
+              return;
             uploadPost(data, textInp.current.value);
-            history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
+            history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
           }}
           text={"Выложить пост"}
         />
         <Button
           classnames={s.exitButton}
           click={() => {
-            history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
+            history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
           }}
           text={"Назад"}
         />

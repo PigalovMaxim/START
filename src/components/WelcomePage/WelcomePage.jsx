@@ -1,6 +1,7 @@
 //Зависимости
 import { useRef, useState } from "react";
 import { Login, setStorage, Registration } from "../../common";
+import cn from "classnames";
 //Фотографии
 import logo from "../../imgs/logo.png";
 import miniLogo from "../../imgs/smallLogo.png";
@@ -15,10 +16,15 @@ import s from "./WelcomePage.module.scss";
 
 function WelcomePage(props) {
   const [isLoginForm, setLoginForm] = useState(true);
+  const [messageClassnames, setMessageClassnames] = useState(s.displayNone);
+  const [canClickRegistrationBtn, setAblilityClick] = useState(true);
+  const [messageText, setMessageText] = useState('');
   const loginInp = useRef();
   const passInp = useRef();
   const nameInp = useRef();
   async function registraion() {
+    if(!canClickRegistrationBtn) return;
+    setAblilityClick(false);
     const letters = [
       "a",
       "b",
@@ -85,23 +91,63 @@ function WelcomePage(props) {
       "_",
       "-"
     ];
-    setLoginForm(true);
-    for(let i = 0; i < loginInp.current.value.length; i++) if(!letters.includes(loginInp.current.value[i])) return;
-    for(let i = 0; i < passInp.current.value.length; i++) if(!letters.includes(passInp.current.value[i])) return;
-    await Registration(
+    if(loginInp.current.value.length <= 5 || loginInp.current.value.length > 40) {
+      showMessageError('Логин должен быть длиннее 5 символов и не более 40 символов');
+      setAblilityClick(true);
+      return;
+    }
+    if(passInp.current.value.length <= 2) {
+      showMessageError('Пароль должен быть длиннее 2 символов');
+      setAblilityClick(true);
+      return;
+    }
+    for(let i = 0; i < loginInp.current.value.length; i++) if(!letters.includes(loginInp.current.value[i])) {
+      showMessageError('Логин должен содержать только символы a-z, A-Z, 0-9, -, _');
+      setAblilityClick(true);
+      return;
+    }
+    for(let i = 0; i < passInp.current.value.length; i++) if(!letters.includes(passInp.current.value[i])) {
+      showMessageError('Пароль должен содержать только символы a-z, A-Z, 0-9, -, _');
+      setAblilityClick(true);
+      return;
+    }
+    const data =await Registration(
       loginInp.current.value,
       passInp.current.value,
       nameInp.current.value
     );
+    if (!data) {
+      showMessageError('Такой логин уже существует');
+      setAblilityClick(true);
+      return;
+    }
+    setLoginForm(true);
+    setAblilityClick(true);
   }
   async function login() {
     const data = await Login(loginInp.current.value, passInp.current.value);
-    if (!data) return;
+    if (!data) {
+      showMessageError('Неправильный логин или пароль');
+      return;
+    }
     props.setUserLogin(true);
     setStorage(data.avatar, data.login, data.description, data.name);
   }
+  function showMessageError(error){
+    setMessageClassnames('');
+    setMessageText(error);
+    setTimeout(() => {
+      setMessageClassnames(s.opacity0);
+    }, 1000);
+    setTimeout(() => {
+      setMessageClassnames(cn(s.opacity0, s.displayNone));
+    }, 3200);
+  }
   return (
     <div className={s.wrapper}>
+      <div className={cn(s.message, messageClassnames)}>
+        {messageText}
+      </div>
       <div className={s.intro}>
         <img src={logo} />
         <label className={s.introText}>
@@ -145,7 +191,7 @@ function WelcomePage(props) {
             refer={loginInp}
             img={loginIcon}
             wrapclx={s.inp}
-            text="Логин (5 или более символов)"
+            text="Логин (6 или более символов)"
           />
           <Input refer={nameInp} img={nameIcon} wrapclx={s.inp} text="Имя" />
           <Input
@@ -156,7 +202,7 @@ function WelcomePage(props) {
           />
           <Button
             click={registraion}
-            classnames={s.btn}
+            classnames={cn(s.btn, canClickRegistrationBtn ? '' : s.btnBlocked)}
             text="Зарегистрироваться"
           />
           <Button

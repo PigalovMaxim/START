@@ -34,6 +34,9 @@
             justify-content: flex-start;
             align-items: flex-start;
             margin-left: 20px;
+            width: 500px;
+            word-wrap: break-word;
+            hyphens: auto;
             .name {
                 font-size: 24px;
                 margin-bottom: 10px;
@@ -42,6 +45,9 @@
                 font-size: 15px;
                 font-weight: 200;
                 margin-top: 5px;
+                width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
             }
         }
     }
@@ -58,6 +64,24 @@
             min-height: 50px;
             font-size: 20px;
             margin-bottom: 30px;
+        }
+    }
+}
+@media (max-width: 725px) {
+    .wrapper {
+        .userInfo {
+            .text {
+                width: 400px;
+            }
+        }
+    }
+}
+@media (max-width: 625px) {
+    .wrapper {
+        .userInfo {
+            .text {
+                width: 300px;
+            }
         }
     }
 }
@@ -83,14 +107,10 @@
                 justify-content: flex-start;
                 align-items: center;
                 margin-left: 0;
+                width: 100%;
                 .name {
                     font-size: 24px;
                     margin-bottom: 10px;
-                    margin-top: 10px;
-                }
-                .description {
-                    font-size: 15px;
-                    width: 100%;
                     margin-top: 10px;
                 }
             }

@@ -16,10 +16,25 @@ import s from "./ProfileSettings.module.scss";
 
 function ProfileSettings() {
   const [isPhotoUploaded, setPhotoUploaded] = useState(false);
+  const [photoText, setPhotoText] = useState('');
   const history = useNavigate();
   const nameInp = useRef();
   const descInp = useRef();
   const photoInp = useRef();
+  function setText() {
+    if (photoInp.current.files.length === 0) {
+      setPhotoUploaded(false);
+      return;
+    }
+    console.log(photoInp.current.files[photoInp.current.files.length - 1]);
+    if (
+      photoInp.current.files[photoInp.current.files.length - 1] &&
+      photoInp.current.files[photoInp.current.files.length - 1].name &&
+      photoInp.current.files[photoInp.current.files.length - 1].name.length >= 50
+    )
+    setPhotoText(photoInp.current.files[photoInp.current.files.length - 1].name.substr(0, 30) + "...");
+    else setPhotoText(photoInp.current.files[photoInp.current.files.length - 1].name);
+  }
   function pushName() {
     if (nameInp.current.value === "") return;
     updateName(nameInp.current.value);
@@ -32,7 +47,7 @@ function ProfileSettings() {
   }
   function pushAvatar() {
     if (!photoInp.current.files[0]) return;
-    updateAvatar(photoInp.current.files[0]);
+    updateAvatar(photoInp.current.files[photoInp.current.files.length - 1]);
     history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
   }
   return (
@@ -46,18 +61,17 @@ function ProfileSettings() {
         ref={photoInp}
         className={s.hideInput}
         id={s.avatarPhoto}
-        onChange={() => setPhotoUploaded(true)}
+        onChange={() => {
+          setPhotoUploaded(true);
+          setText();
+        }}
       />
       <label
         className={cn(s.labelFor, isPhotoUploaded ? s.active : "")}
         htmlFor={s.avatarPhoto}
       >
         {isPhotoUploaded
-          ? `Загружено фото: ${
-              photoInp.current.files[0].name.length >= 50
-                ? photoInp.current.files[0].name.substr(0, 30) + "..."
-                : photoInp.current.files[0].name
-            }`
+          ? `Загружено фото: ${photoText}`
           : "Загрузить фото"}
       </label>
       <Button classnames={s.btn} click={pushAvatar} text={"Загрузить аватарку"} />
@@ -67,6 +81,13 @@ function ProfileSettings() {
       <label className={s.settingsName}>Сменить описание профиля</label>
       <textarea placeholder="Описание профиля (не более 300 символов)" ref={descInp} className={s.textArea} />
       <Button classnames={s.btn} click={pushDesc} text={"Загрузить описание"} />
+      <Button
+          classnames={s.exitButton}
+          click={() => {
+            history(`${LINKS.PROFILE}/${localStorage.getItem('userName')}`);
+          }}
+          text={"Назад"}
+        />
     </div>
   );
 }

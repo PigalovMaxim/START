@@ -3,9 +3,9 @@ import s from "./Posts.module.scss";
 
 function Posts(props) {
   function reverseArr(){
-      const arr = props.posts.slice(0);
-      const rev = arr.reverse();
-      return rev;
+      const rev = props.posts.slice(0);
+      const result = rev.slice(0).sort(((a, b) => new Date(b.date) - new Date(a.date)));
+      return result;
   }
   return (
       <div className={s.posts}>

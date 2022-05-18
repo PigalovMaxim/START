@@ -5,6 +5,23 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    .message {
+        position: absolute;
+        bottom: 10px;
+        font-size: 24px;
+        width: fit-content;
+        height: fit-content;
+        padding: 20px;
+        background-color: rgb(224, 75, 75);
+        opacity: 1;
+        transition: opacity 2s ease-in-out;
+    }
+    .displayNone {
+        display: none;
+    }
+    .opacity0 {
+        opacity: 0;
+    }
     .intro {
         display: flex;
         flex-direction: column;
@@ -45,6 +62,9 @@
         .btn {
             margin-bottom: 10px;
         }
+        .btnBlocked {
+            background-color: rgba(236, 205, 33, 0.815);
+        }
         .transparentBtn {
             background-color: transparent;
             font-size: 20px;
@@ -74,6 +94,9 @@
         justify-content: flex-start;
         align-items: center;
         overflow: scroll;
+        .message {
+            font-size: 16px;
+        }
         .intro {
             width: 100%;
             padding: 0 15px;
