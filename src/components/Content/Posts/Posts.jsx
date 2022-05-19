@@ -12,10 +12,12 @@ function Posts(props) {
         {reverseArr().map((value, index) => (
           <Post
             id={value.id}
+            isMyProfile={props.isMyProfile ? props.isMyProfile : false}
             avatar={value.avatar ? value.avatar : props.avatar}
             name={value.name ? value.name : props.name}
             text={value.text}
             likes={value.likes}
+            login={value.login}
             date={value.date}
             postImage={value.image}
             isUserLiked={value.isUserLiked}

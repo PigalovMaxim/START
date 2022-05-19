@@ -20,6 +20,8 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
         }
         .btn {
             font-size: 14px;

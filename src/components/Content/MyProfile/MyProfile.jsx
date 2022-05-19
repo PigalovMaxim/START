@@ -52,6 +52,7 @@ function MyProfile() {
           posts={posts}
           avatar={localStorage.getItem("avatar")}
           name={localStorage.getItem("name")}
+          isMyProfile={true}
         />
       </div>
     </div>

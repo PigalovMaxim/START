@@ -1,39 +1,82 @@
 //Зависимости
 import { useState } from "react";
-import { likePost, dislikePost } from "../../common";
+import { likePost, dislikePost, deletePost, LINKS } from "../../common";
 //Фотографии
 import likeIcon from "../../imgs/like.png";
 import likeActiveIcon from "../../imgs/likeActive.png";
 import undefinedUserIcon from "../../imgs/undefinedUser.png";
+import ThreeDotsIcon from "../../imgs/ThreeDotsIcon.png";
+import BucketIcon from "../../imgs/BucketIcon.png";
 //Компоненты
 import Audio from "./Audio";
 //Другое
 import s from "./Post.module.scss";
-
+import cn from 'classnames';
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 function Post(props) {
-  const [likesCount, setLikesCount] = useState(props.likes ? props.likes - 0 : 0);
-  const [isLikeClicked, setClicked] = useState(props.isUserLiked ? props.isUserLiked : false);
+  console.log(props);
+  const [likesCount, setLikesCount] = useState(
+    props.likes ? props.likes - 0 : 0
+  );
+  const [isLikeClicked, setClicked] = useState(
+    props.isUserLiked ? props.isUserLiked : false
+  );
+  const [isDeleteClicked, setDeleteClicked] = useState(false);
+  const history = useNavigate();
   function makeRightData() {
-    const months=[
-         'Янв',
-         'Февр',
-         'Мар',
-         'Апр',
-         'Мая',
-         'Июн',
-         'Июл',
-         'Авг',
-         'Сен',
-         'Ноя',
-         'Дек',
-      ];
-    let strArr = props.date.substring(0, 10).split('-');
-    return parseInt(strArr[2]) + ' ' + months[parseInt(strArr[1]) - 1] + ' ' + strArr[0].substring(2) + ' в ' + (parseInt(props.date.substring(11, 13)) + 1) + ':' + props.date.substring(14, 16);
+    const months = [
+      "Янв",
+      "Февр",
+      "Мар",
+      "Апр",
+      "Мая",
+      "Июн",
+      "Июл",
+      "Авг",
+      "Сен",
+      "Ноя",
+      "Дек",
+    ];
+    let strArr = props.date.substring(0, 10).split("-");
+    return (
+      parseInt(strArr[2]) +
+      " " +
+      months[parseInt(strArr[1]) - 1] +
+      " " +
+      strArr[0].substring(2) +
+      " в " +
+      (parseInt(props.date.substring(11, 13)) + 1) +
+      ":" +
+      props.date.substring(14, 16)
+    );
+  }
+  function confirmDelete() {
+    deletePost(props.id);
+    setDeleteClicked(false);
   }
   return (
     <div className={s.wrapper}>
-      <div className={s.postInfo}>
+      {props.isMyProfile ? (
+        <div className={s.postSettings}>
+          <img src={ThreeDotsIcon} />
+          <div className={s.postSettingsMenu}>
+            <div
+              onClick={() => setDeleteClicked(true)}
+              className={s.menuOption}
+            >
+              Удалить пост <img src={BucketIcon} />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div />
+      )}
+      <div
+        onClick={() => history(`${LINKS.PROFILE}/${props.login}`)}
+        className={s.postInfo}
+      >
         <img src={props.avatar ? props.avatar : undefinedUserIcon} />
         <div className={s.text}>
           <label className={s.name}>{props.name}</label>
@@ -48,11 +91,7 @@ function Post(props) {
           <div />
         )}
         {props.video ? (
-          <video
-            className={s.visual}
-            src={props.video}
-            controls="controls"
-          />
+          <video className={s.visual} src={props.video} controls="controls" />
         ) : (
           <div />
         )}
@@ -74,6 +113,22 @@ function Post(props) {
           {likesCount}
         </div>
       </div>
+      {isDeleteClicked ? (
+        <div className={s.confirmDelete}>
+          <Button
+            classnames={cn(s.btn, s.btn1)}
+            click={confirmDelete}
+            text="Удалить?"
+          />
+          <Button
+            classnames={s.btn}
+            click={() => setDeleteClicked(false)}
+            text="Нет"
+          />
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 }

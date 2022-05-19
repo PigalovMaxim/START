@@ -33,6 +33,8 @@
             width: 165px;
             height: 165px;
             border-radius: 8px;
+            object-fit: cover;
+            object-position: top;
         }
         .text {
             display: flex;

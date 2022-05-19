@@ -1,6 +1,7 @@
 import md5 from 'md5';
 //Переменные
-const SITE_LINK = 'http://startserver/'; //'https://ssstart.ru/'
+//const SITE_LINK = 'https://ssstart.ru/';
+const SITE_LINK = 'http://startserver/';
 export const LINKS = {
   WELCOME: '/Welcome',
   UPLOAD_FORM: '/UploadForm',
@@ -57,10 +58,10 @@ export async function getMyPosts() {
 }
 export async function uploadPost(data, text) {
   const formData = new FormData();
-  //Ограничение на картинку и песню 10 МБ, а на видео 50 МБ
-  if(data.image !== null && data.image.size < 10000000) formData.append('image', data.image);
-  if(data.video !== null && data.video.size < 50000000) formData.append('video', data.video);
-  if(data.audio !== null && data.audio.size < 10000000) formData.append('audio', data.audio);
+  //Ограничение на картинку и песню ~28 МБ, а на видео ~90 МБ
+  if(data.image !== null && data.image.size < 30000000) formData.append('image', data.image);
+  if(data.video !== null && data.video.size < 100000000) formData.append('video', data.video);
+  if(data.audio !== null && data.audio.size < 30000000) formData.append('audio', data.audio);
   fetch(
     `${SITE_LINK}API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
     {
@@ -114,6 +115,11 @@ export async function follow(login) {
 export async function unfollow(login) {
   fetch(
     `${SITE_LINK}API/?method=unfollow&userLogin=${login}&followerLogin=${localStorage.getItem('userName')}`
+  );
+}
+export function deletePost(id) {
+  fetch(
+    `${SITE_LINK}API/?method=deletePost&id=${id}&login=${localStorage.getItem('userName')}`
   );
 }
 
