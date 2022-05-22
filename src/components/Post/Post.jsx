@@ -64,7 +64,7 @@ function Post(props) {
           <div style={{ bottom: "-80px" }} className={s.postSettingsMenu}>
             <div
               onClick={() =>
-                history(`${LINKS.EDIT_POST}/${props.id}/${props.text}`)
+                history(`${LINKS.EDIT_POST}/${props.id}/${props.text}/${props.postImage ? 'not_null' : 'null'}/${props.video ? 'not_null' : 'null'}/${props.audio ? 'not_null' : 'null'}`)
               }
               className={s.menuOption}
             >

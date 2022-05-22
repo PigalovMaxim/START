@@ -31,17 +31,16 @@ function EditPost() {
         <Button
           classnames={s.btn}
           click={() => {
+            console.log(params);
+            const imageFile = photoInp.current.files[photoInp.current.files.length - 1] || (params.image === 'null') ? '' : params.image;
+            const videoFile = videoInp.current.files[videoInp.current.files.length - 1] || (params.video === 'null') ? '' : params.video;
+            const audioFile = audioInp.current.files[audioInp.current.files.length - 1] || (params.audio === 'null') ? '' : params.audio;
             const data = {
-              image:
-                photoInp.current.files[photoInp.current.files.length - 1] ||
-                null,
-              video:
-                videoInp.current.files[videoInp.current.files.length - 1] ||
-                null,
-              audio:
-                audioInp.current.files[audioInp.current.files.length - 1] ||
-                null,
+              image: imageFile,
+              video: videoFile,
+              audio: audioFile
             };
+            console.log('asdasd');
             if (
               textInp.current.value === "" &&
               data.image === null &&
