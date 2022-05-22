@@ -14,9 +14,40 @@ function EditPost() {
   const videoInp = useRef();
   const audioInp = useRef();
   const history = useNavigate();
-  useEffect(() => {
-    textInp.current.value = params.text;
-  }, []);
+  function SaveClick() {
+    let imageFile = null;
+    if (photoInp.current.files[photoInp.current.files.length - 1])
+      imageFile = photoInp.current.files[photoInp.current.files.length - 1];
+    else if (params.image === "null") imageFile = "";
+    else imageFile = params.image;
+
+    let videoFile = null; 
+    if (videoInp.current.files[videoInp.current.files.length - 1])
+    videoFile = videoInp.current.files[videoInp.current.files.length - 1];
+    else if (params.video === "null") videoFile = "";
+    else videoFile = params.video;
+
+    let audioFile = null;
+    if (audioInp.current.files[audioInp.current.files.length - 1])
+    audioFile = audioInp.current.files[audioInp.current.files.length - 1];
+    else if (params.audio === "null") audioFile = "";
+    else audioFile = params.audio;
+
+    const data = {
+      image: imageFile,
+      video: videoFile,
+      audio: audioFile,
+    };
+    if (
+      textInp.current.value === "" &&
+      data.image === '' &&
+      data.video === '' &&
+      data.audio === ''
+    )
+      return;
+    editPost(data, textInp.current.value, params.id);
+    history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
+  }
   return (
     <div className={s.wrapper}>
       <div className={s.form}>
@@ -24,31 +55,25 @@ function EditPost() {
         <div className={s.content}>
           <label className={s.text}>Изменить текст поста</label>
           <textarea ref={textInp} className={s.textInp} />
-          <FileInput classnames={s.inp} refer={photoInp} type={FILES_TYPES.PHOTO} />
-          <FileInput classnames={s.inp} refer={videoInp} type={FILES_TYPES.VIDEO} />
-          <FileInput classnames={s.inp} refer={audioInp} type={FILES_TYPES.AUDIO} />
+          <FileInput
+            classnames={s.inp}
+            refer={photoInp}
+            type={FILES_TYPES.PHOTO}
+          />
+          <FileInput
+            classnames={s.inp}
+            refer={videoInp}
+            type={FILES_TYPES.VIDEO}
+          />
+          <FileInput
+            classnames={s.inp}
+            refer={audioInp}
+            type={FILES_TYPES.AUDIO}
+          />
         </div>
         <Button
           classnames={s.btn}
-          click={() => {
-            const imageFile = photoInp.current.files[photoInp.current.files.length - 1] || (params.image === 'null') ? '' : params.image;
-            const videoFile = videoInp.current.files[videoInp.current.files.length - 1] || (params.video === 'null') ? '' : params.video;
-            const audioFile = audioInp.current.files[audioInp.current.files.length - 1] || (params.audio === 'null') ? '' : params.audio;
-            const data = {
-              image: imageFile,
-              video: videoFile,
-              audio: audioFile
-            };
-            if (
-              textInp.current.value === "" &&
-              data.image === null &&
-              data.video === null &&
-              data.audio === null
-            )
-              return;
-            editPost(data, textInp.current.value, params.id);
-            history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
-          }}
+          click={SaveClick}
           text={"Сохранить изменения"}
         />
         <Button

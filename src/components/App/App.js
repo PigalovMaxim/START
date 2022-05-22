@@ -50,7 +50,7 @@ function App() {
       {isUserLogin ? (
         <Routes>
           <Route path={LINKS.UPLOAD_FORM} element={<UploadForm />} />
-          <Route path={LINKS.EDIT_POST + '/:id/:text/:image/:video/:audio'} element={<EditPost />} />
+          <Route path={LINKS.EDIT_POST + '/:id/:image/:video/:audio'} element={<EditPost />} />
         </Routes>
       ) : (
         <div />
