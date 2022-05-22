@@ -9,6 +9,7 @@ import Content from "../Content/Content";
 import Header from "../Header/Header";
 import NavMenu from "../NavMenu";
 import UploadForm from "../UploadForm/UploadForm";
+import EditPost from "../EditPost/EditPost";
 //Разное
 import "./App.css";
 
@@ -49,6 +50,7 @@ function App() {
       {isUserLogin ? (
         <Routes>
           <Route path={LINKS.UPLOAD_FORM} element={<UploadForm />} />
+          <Route path={LINKS.EDIT_POST + '/:id/:text'} element={<EditPost />} />
         </Routes>
       ) : (
         <div />

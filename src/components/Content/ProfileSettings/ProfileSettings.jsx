@@ -1,40 +1,25 @@
 //Зависимости
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   updateAvatar,
   updateDescription,
   updateName,
   LINKS,
+  FILES_TYPES
 } from "../../../common";
-import cn from "classnames";
 //Компоненты
 import Button from "../../Button/Button";
 import Input from "../../Input";
 //Другое
 import s from "./ProfileSettings.module.scss";
+import FileInput from "../../FileInput/FileInput";
 
 function ProfileSettings() {
-  const [isPhotoUploaded, setPhotoUploaded] = useState(false);
-  const [photoText, setPhotoText] = useState('');
   const history = useNavigate();
   const nameInp = useRef();
   const descInp = useRef();
   const photoInp = useRef();
-  function setText() {
-    if (photoInp.current.files.length === 0) {
-      setPhotoUploaded(false);
-      return;
-    }
-    console.log(photoInp.current.files[photoInp.current.files.length - 1]);
-    if (
-      photoInp.current.files[photoInp.current.files.length - 1] &&
-      photoInp.current.files[photoInp.current.files.length - 1].name &&
-      photoInp.current.files[photoInp.current.files.length - 1].name.length >= 50
-    )
-    setPhotoText(photoInp.current.files[photoInp.current.files.length - 1].name.substr(0, 30) + "...");
-    else setPhotoText(photoInp.current.files[photoInp.current.files.length - 1].name);
-  }
   function pushName() {
     if (nameInp.current.value === "") return;
     updateName(nameInp.current.value);
@@ -54,26 +39,7 @@ function ProfileSettings() {
     <div className={s.settings}>
       <label className={s.title}>Редактировать профиль</label>
       <label className={s.settingsName}>Сменить аватарку</label>
-      <input
-        type="file"
-        name="imageFile"
-        accept=".jpg,.jpeg,.png"
-        ref={photoInp}
-        className={s.hideInput}
-        id={s.avatarPhoto}
-        onChange={() => {
-          setPhotoUploaded(true);
-          setText();
-        }}
-      />
-      <label
-        className={cn(s.labelFor, isPhotoUploaded ? s.active : "")}
-        htmlFor={s.avatarPhoto}
-      >
-        {isPhotoUploaded
-          ? `Загружено фото: ${photoText}`
-          : "Загрузить фото"}
-      </label>
+      <FileInput refer={photoInp} type={FILES_TYPES.PHOTO} />
       <Button classnames={s.btn} click={pushAvatar} text={"Загрузить аватарку"} />
       <label className={s.settingsName}>Сменить имя</label>
       <Input text="Имя (не более 40 символов)" refer={nameInp} classnames={s.inp} />

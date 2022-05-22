@@ -1,6 +1,6 @@
 $paddingPostNormal: 25px;
 $paddingPostSmall: 15px;
-$settingsWidth: 150px;
+$settingsWidth: 240px;
 $settingsMenuHeight: 100px;
 .wrapper {
     display: flex;
@@ -9,7 +9,7 @@ $settingsMenuHeight: 100px;
     align-items: flex-start;
     background-color: #313041;
     position: relative;
-    width: 100%;
+    width: 500px;
     padding: $paddingPostNormal;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -55,13 +55,15 @@ $settingsMenuHeight: 100px;
     }
     .postSettingsMenu {
         display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: $settingsWidth;
         height: fit-content;
         border-radius: 5px;
         background-color: #454452;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.582);
         position: absolute;
-        bottom: -40px;
         right: 0;
         .menuOption {
             width: 100%;
@@ -151,6 +153,11 @@ $settingsMenuHeight: 100px;
         .postInteractive * {
             cursor: pointer;
         }
+    }
+}
+@media (max-width: 530px) {
+    .wrapper {
+        width: 100%;
     }
 }
 @media (max-width: 370px) {

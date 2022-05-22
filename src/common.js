@@ -9,6 +9,12 @@ export const LINKS = {
   USERS: '/Users',
   NEWSFEED: '/Newsfeed',
   PROFILE_SETTINGS: '/ProfileSettings',
+  EDIT_POST: '/EditPost'
+};
+export const FILES_TYPES = {
+  PHOTO: 'Photo',
+  VIDEO: 'Video',
+  AUDIO: 'Audio'
 };
 //Запросы
 export async function Login(login, password) {
@@ -64,6 +70,20 @@ export async function uploadPost(data, text) {
   if(data.audio !== null && data.audio.size < 30000000) formData.append('audio', data.audio);
   fetch(
     `${SITE_LINK}API/?method=uploadPost&login=${localStorage.getItem('userName')}&text=${text}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+}
+export async function editPost(data, text, id) {
+  const formData = new FormData();
+  //Ограничение на картинку и песню ~28 МБ, а на видео ~90 МБ
+  if(data.image !== null && data.image.size < 30000000) formData.append('image', data.image); else formData.append('image', null);
+  if(data.video !== null && data.video.size < 100000000) formData.append('video', data.video); else formData.append('video', null);
+  if(data.audio !== null && data.audio.size < 30000000) formData.append('audio', data.audio); else formData.append('audio', null);
+  fetch(
+    `${SITE_LINK}API/?method=updatePost&id=${id}&login=${localStorage.getItem('userName')}&text=${text}`,
     {
       method: "POST",
       body: formData,

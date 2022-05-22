@@ -7,16 +7,16 @@ import likeActiveIcon from "../../imgs/likeActive.png";
 import undefinedUserIcon from "../../imgs/undefinedUser.png";
 import ThreeDotsIcon from "../../imgs/ThreeDotsIcon.png";
 import BucketIcon from "../../imgs/BucketIcon.png";
+import PencilIcon from "../../imgs/PencilIcon.png";
 //Компоненты
 import Audio from "./Audio";
 //Другое
 import s from "./Post.module.scss";
-import cn from 'classnames';
+import cn from "classnames";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 function Post(props) {
-  console.log(props);
   const [likesCount, setLikesCount] = useState(
     props.likes ? props.likes - 0 : 0
   );
@@ -61,7 +61,15 @@ function Post(props) {
       {props.isMyProfile ? (
         <div className={s.postSettings}>
           <img src={ThreeDotsIcon} />
-          <div className={s.postSettingsMenu}>
+          <div style={{ bottom: "-80px" }} className={s.postSettingsMenu}>
+            <div
+              onClick={() =>
+                history(`${LINKS.EDIT_POST}/${props.id}/${props.text}`)
+              }
+              className={s.menuOption}
+            >
+              Редактировать пост <img src={PencilIcon} />
+            </div>
             <div
               onClick={() => setDeleteClicked(true)}
               className={s.menuOption}

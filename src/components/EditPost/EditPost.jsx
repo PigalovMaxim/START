@@ -1,31 +1,32 @@
 //Зависимости
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { FILES_TYPES, LINKS, uploadPost } from "../../common";
+import { useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { LINKS, FILES_TYPES, editPost } from "../../common";
 //Другое
 import Button from "../Button/Button";
-import s from "./UploadForm.module.scss";
+import s from "./EditPost.module.scss";
 import FileInput from "../FileInput/FileInput";
 
-function UploadForm() {
+function EditPost() {
+  const params = useParams();
   const textInp = useRef();
   const photoInp = useRef();
   const videoInp = useRef();
   const audioInp = useRef();
   const history = useNavigate();
+  useEffect(() => {
+    textInp.current.value = params.text;
+  }, []);
   return (
     <div className={s.wrapper}>
       <div className={s.form}>
-        <label className={s.title}>Загрузите свой пост</label>
+        <label className={s.title}>Изменить пост</label>
         <div className={s.content}>
-          <label className={s.text}>Текст поста</label>
+          <label className={s.text}>Изменить текст поста</label>
           <textarea ref={textInp} className={s.textInp} />
-          <label className={s.text}>Выложите фото</label>
-          <FileInput refer={photoInp} type={FILES_TYPES.PHOTO} />
-          <label className={s.text}>Выложите видео</label>
-          <FileInput refer={videoInp} type={FILES_TYPES.VIDEO} />
-          <label className={s.text}>Выложите аудио</label>
-          <FileInput refer={audioInp} type={FILES_TYPES.AUDIO} />
+          <FileInput classnames={s.inp} refer={photoInp} type={FILES_TYPES.PHOTO} />
+          <FileInput classnames={s.inp} refer={videoInp} type={FILES_TYPES.VIDEO} />
+          <FileInput classnames={s.inp} refer={audioInp} type={FILES_TYPES.AUDIO} />
         </div>
         <Button
           classnames={s.btn}
@@ -48,10 +49,10 @@ function UploadForm() {
               data.audio === null
             )
               return;
-            uploadPost(data, textInp.current.value);
+            editPost(data, textInp.current.value, params.id);
             history(`${LINKS.PROFILE}/${localStorage.getItem("userName")}`);
           }}
-          text={"Выложить пост"}
+          text={"Сохранить изменения"}
         />
         <Button
           classnames={s.exitButton}
@@ -65,4 +66,4 @@ function UploadForm() {
   );
 }
 
-export default UploadForm;
+export default EditPost;

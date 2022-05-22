@@ -9,26 +9,16 @@
     overflow: scroll;
     height: 100%;
     width: 100%;
-    .posts {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: 500px;
-        .title {
-            font-size: 35px;
-            margin-bottom: 20px;
-        }
+    .title {
+        font-size: 35px;
+        margin-bottom: 20px;
     }
 }
 @media (max-width: 530px) {
     .wrapper {
         padding: 10px;
-        .posts {
-            width: 100%;
-            .title {
-                font-size: 20px;
-            }
+        .title {
+            font-size: 20px;
         }
     }
 }

@@ -1,12 +1,11 @@
 //Зависимости
 import { useEffect, useState } from "react";
 import { getNewsFeed } from "../../../common";
+import _ from 'lodash';
 //Компоненты
 import Posts from "../Posts/Posts";
 //Другое
 import s from "./Newsfeed.module.scss";
-
-
 
 function Newsfeed() {
   const [posts, setPosts] = useState([]);
@@ -19,10 +18,10 @@ function Newsfeed() {
   }, []);
   return (
     <div className={s.wrapper}>
-      <div className={s.posts}>
         <label className={s.title}>Новостная лента</label>
-        <Posts posts={posts}/>
-      </div>
+        <Posts
+          posts={posts}
+        />
     </div>
   );
 }
