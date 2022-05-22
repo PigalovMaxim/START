@@ -78,11 +78,10 @@ export async function uploadPost(data, text) {
 }
 export async function editPost(data, text, id) {
   const formData = new FormData();
-  console.log(data);
   //Ограничение на картинку и песню ~28 МБ, а на видео ~90 МБ
-  if(data.image !== '' && data.image.size < 30000000) formData.append('image', data.image); else formData.append('image', null);
-  if(data.video !== '' && data.video.size < 100000000) formData.append('video', data.video); else formData.append('video', null);
-  if(data.audio !== '' && data.audio.size < 30000000) formData.append('audio', data.audio); else formData.append('audio', null);
+  if(data.image !== '' && data.image.size < 30000000) formData.append('image', data.image); else formData.append('image', 'null');
+  if(data.video !== '' && data.video.size < 100000000) formData.append('video', data.video); else formData.append('video', 'null');
+  if(data.audio !== '' && data.audio.size < 30000000) formData.append('audio', data.audio); else formData.append('audio', 'null');
   fetch(
     `${SITE_LINK}API/?method=updatePost&id=${id}&login=${localStorage.getItem('userName')}&text=${text}`,
     {
