@@ -43,6 +43,10 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 
 .wrapper .account .btn {

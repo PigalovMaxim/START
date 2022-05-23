@@ -60,7 +60,7 @@
           align-items: flex-start;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
   margin-top: 30px;
 }
 
@@ -88,49 +88,12 @@
   resize: none;
   padding: 10px;
   width: 100%;
-  height: 30%;
-}
-
-.wrapper .form .content .hideInput {
-  display: none;
-}
-
-.wrapper .form .content .inputLabel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 450px;
-  height: 60px;
-  background-color: #313041;
-  -webkit-transition: background-color 0.25s ease-in-out;
-  transition: background-color 0.25s ease-in-out;
-  cursor: pointer;
-}
-
-.wrapper .form .content .inputLabel:hover {
-  background-color: #414052;
-}
-
-.wrapper .form .content .active {
-  background-color: #24e24d;
-}
-
-.wrapper .form .content .active:hover {
-  background-color: #12c238;
+  min-height: 200px;
 }
 
 .wrapper .form .btn {
   width: 50%;
+  min-height: 60px;
 }
 
 .wrapper .form .exitButton {
@@ -172,10 +135,6 @@
     height: fit-content;
     margin-top: 10px;
   }
-  .wrapper .form .content .inputLabel {
-    width: 100%;
-    height: 60px;
-  }
   .wrapper .form .btn {
     width: 70%;
     height: 50px;
@@ -207,10 +166,6 @@
     height: -moz-fit-content;
     height: fit-content;
     margin-top: 10px;
-  }
-  .wrapper .form .content .inputLabel {
-    width: 100%;
-    height: 60px;
   }
   .wrapper .form .btn {
     width: 70%;

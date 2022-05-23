@@ -117,6 +117,12 @@ export async function updateName(name) {
   const result = await answer.json();
   if(result.data) localStorage.setItem("name", name);
 }
+export async function sendComment(id, text) {
+if(text === '' && text.length < 100) return;
+fetch(
+    `${SITE_LINK}API/?method=addComment&id=${id}&login=${localStorage.getItem('userName')}&text=${text}`
+  );
+}
 export function dislikePost(id) {
   fetch(
     `${SITE_LINK}API/?method=dislike&id=${id}&login=${localStorage.getItem('userName')}`

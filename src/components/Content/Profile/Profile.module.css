@@ -62,6 +62,10 @@
   width: 165px;
   height: 165px;
   border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 
 .wrapper .userInfo .text {
@@ -79,6 +83,7 @@
       -ms-flex-align: start;
           align-items: flex-start;
   margin-left: 20px;
+  width: 500px;
 }
 
 .wrapper .userInfo .text .name {
@@ -90,6 +95,9 @@
   font-size: 15px;
   font-weight: 200;
   margin-top: 5px;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .wrapper .posts {
@@ -109,6 +117,18 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 725px) {
+  .wrapper .userInfo .text {
+    width: 400px;
+  }
+}
+
+@media (max-width: 625px) {
+  .wrapper .userInfo .text {
+    width: 300px;
+  }
 }
 
 @media (max-width: 580px) {
@@ -153,6 +173,7 @@
         -ms-flex-align: center;
             align-items: center;
     margin-left: 0;
+    width: 100%;
   }
   .wrapper .userInfo .text .name {
     font-size: 24px;

@@ -1,20 +1,27 @@
 //Зависимости
-import { useState } from "react";
-import { likePost, dislikePost, deletePost, LINKS } from "../../common";
+import { useRef, useState } from "react";
+import {
+  likePost,
+  dislikePost,
+  deletePost,
+  LINKS,
+  sendComment,
+} from "../../common";
+import { useNavigate } from "react-router-dom";
+import cn from "classnames";
 //Фотографии
 import likeIcon from "../../imgs/like.png";
 import likeActiveIcon from "../../imgs/likeActive.png";
 import undefinedUserIcon from "../../imgs/undefinedUser.png";
 import ThreeDotsIcon from "../../imgs/ThreeDotsIcon.png";
 import BucketIcon from "../../imgs/BucketIcon.png";
-import PencilIcon from "../../imgs/PencilIcon.png";
+import CommentsIcon from "../../imgs/CommentsIcon.png";
 //Компоненты
 import Audio from "./Audio";
+import Button from "../Button";
+import Input from "../Input";
 //Другое
 import s from "./Post.module.scss";
-import cn from "classnames";
-import Button from "../Button/Button";
-import { useNavigate } from "react-router-dom";
 
 function Post(props) {
   const [likesCount, setLikesCount] = useState(
@@ -23,7 +30,9 @@ function Post(props) {
   const [isLikeClicked, setClicked] = useState(
     props.isUserLiked ? props.isUserLiked : false
   );
+  const [isCommentsOpened, setCommentsOpened] = useState(false);
   const [isDeleteClicked, setDeleteClicked] = useState(false);
+  const commentInp = useRef();
   const history = useNavigate();
   function makeRightData() {
     const months = [
@@ -63,14 +72,6 @@ function Post(props) {
           <img src={ThreeDotsIcon} />
           <div style={{ bottom: "-80px" }} className={s.postSettingsMenu}>
             <div
-              onClick={() =>
-                history(`${LINKS.EDIT_POST}/${props.id}/${props.postImage ? 'not_null' : 'null'}/${props.video ? 'not_null' : 'null'}/${props.audio ? 'not_null' : 'null'}`)
-              }
-              className={s.menuOption}
-            >
-              Редактировать пост <img src={PencilIcon} />
-            </div>
-            <div
               onClick={() => setDeleteClicked(true)}
               className={s.menuOption}
             >
@@ -104,21 +105,30 @@ function Post(props) {
           <div />
         )}
         {props.audio ? <Audio SRC={props.audio} /> : <div />}
-        <div
-          onClick={() => {
-            if (isLikeClicked) {
-              setLikesCount(likesCount - 1);
-              dislikePost(props.id);
-            } else {
-              setLikesCount(likesCount + 1);
-              likePost(props.id);
-            }
-            setClicked(!isLikeClicked);
-          }}
-          className={s.postInteractive}
-        >
-          <img src={isLikeClicked ? likeActiveIcon : likeIcon} />
-          {likesCount}
+        <div className={s.interactive}>
+          <div
+            onClick={() => {
+              if (isLikeClicked) {
+                setLikesCount(likesCount - 1);
+                dislikePost(props.id);
+              } else {
+                setLikesCount(likesCount + 1);
+                likePost(props.id);
+              }
+              setClicked(!isLikeClicked);
+            }}
+            className={s.postLikes}
+          >
+            <img src={isLikeClicked ? likeActiveIcon : likeIcon} />
+            {likesCount}
+          </div>
+          <div
+            onClick={() => setCommentsOpened(!isCommentsOpened)}
+            className={s.postComments}
+          >
+            <img src={CommentsIcon} />
+            {props.comments ? props.comments.length : 0}
+          </div>
         </div>
       </div>
       {isDeleteClicked ? (
@@ -137,6 +147,29 @@ function Post(props) {
       ) : (
         <div />
       )}
+      <div className={cn(s.comments, isCommentsOpened ? s.opened : "")}>
+        {props.comments ? (
+          props.comments.map((value) => (
+            <div className={s.comment}>
+              <img src={value.avatar ? props.avatar : undefinedUserIcon} />
+              <div className={s.textBlock}>
+                {value.login}
+                <label className={s.commentText}>{value.comment}</label>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div />
+        )}
+        <div className={s.controls}>
+          <Input
+            text="Текст комментария"
+            refer={commentInp}
+            classnames={s.inp}
+          />
+          <Button classnames={s.btn} click={() => sendComment(props.id, commentInp.current.value)} text="Отправить" />
+        </div>
+      </div>
     </div>
   );
 }

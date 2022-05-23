@@ -12,9 +12,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
   height: 100%;
   width: 100%;
   padding: 20px;
+  overflow: scroll;
 }
 
 .settings .title {
@@ -47,7 +49,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 450px;
-  height: 60px;
+  min-height: 60px;
   background-color: #313041;
   -webkit-transition: background-color 0.25s ease-in-out;
   transition: background-color 0.25s ease-in-out;
@@ -68,6 +70,8 @@
 
 .settings .inp {
   padding: 15px;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 .settings .textArea {
@@ -88,7 +92,7 @@
   resize: none;
   padding: 10px;
   width: 100%;
-  height: 100px;
+  min-height: 100px;
 }
 
 .settings .btn {
@@ -103,6 +107,20 @@
   margin-top: 15px;
 }
 
+.settings .exitButton {
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 18px;
+  padding: 10px 15px;
+  top: 15px;
+  right: 15px;
+}
+
 @media (max-height: 770px) {
   .settings {
     padding: 10px;
@@ -114,9 +132,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 15px;
-  }
-  .settings .textArea {
-    height: 100px;
   }
 }
 
@@ -133,25 +148,7 @@
     font-size: 16px;
   }
   .settings .labelFor {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     width: 100%;
-    height: 60px;
-    background-color: #313041;
-    -webkit-transition: background-color 0.25s ease-in-out;
-    transition: background-color 0.25s ease-in-out;
-    cursor: pointer;
   }
 }
 /*# sourceMappingURL=ProfileSettings.module.css.map */

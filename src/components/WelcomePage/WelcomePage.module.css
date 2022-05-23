@@ -15,6 +15,31 @@
           align-items: center;
 }
 
+.wrapper .message {
+  position: absolute;
+  bottom: 10px;
+  font-size: 24px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px;
+  background-color: #e04b4b;
+  opacity: 1;
+  -webkit-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+}
+
+.wrapper .displayNone {
+  display: none;
+}
+
+.wrapper .opacity0 {
+  opacity: 0;
+}
+
 .wrapper .intro {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -81,6 +106,10 @@
   margin-bottom: 10px;
 }
 
+.wrapper .login_form .btnBlocked, .wrapper .registration_form .btnBlocked {
+  background-color: rgba(236, 205, 33, 0.815);
+}
+
 .wrapper .login_form .transparentBtn, .wrapper .registration_form .transparentBtn {
   background-color: transparent;
   font-size: 20px;
@@ -128,6 +157,9 @@
         -ms-flex-align: center;
             align-items: center;
     overflow: scroll;
+  }
+  .wrapper .message {
+    font-size: 16px;
   }
   .wrapper .intro {
     width: 100%;

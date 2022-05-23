@@ -9,14 +9,216 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   background-color: #313041;
-  width: 100%;
+  position: relative;
+  width: 500px;
   padding: 25px;
   border-radius: 8px;
   margin-bottom: 20px;
+}
+
+.wrapper .comments {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 400px;
+  margin-top: 15px;
+  overflow: scroll;
+}
+
+.wrapper .comments .comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  padding: 10px;
+  background-color: #454452;
+  margin-bottom: 10px;
+}
+
+.wrapper .comments .comment img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.wrapper .comments .comment .textBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-left: 20px;
+  width: 75%;
+  word-wrap: break-word;
+}
+
+.wrapper .comments .comment .textBlock .commentText {
+  width: 100%;
+  word-wrap: break-word;
+  margin-top: 10px;
+}
+
+.wrapper .opened {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .confirmDelete {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.63);
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+}
+
+.wrapper .confirmDelete .btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 18px;
+  padding: 20px 30px;
+}
+
+.wrapper .confirmDelete .btn1 {
+  margin-right: 20px;
+}
+
+.wrapper .postSettings {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 25px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+}
+
+.wrapper .postSettings img {
+  width: 70%;
+  height: 70%;
+}
+
+.wrapper .postSettings:hover .postSettingsMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .postSettingsMenu {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 240px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  background-color: #454452;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.582);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.582);
+  position: absolute;
+  right: 0;
+}
+
+.wrapper .postSettingsMenu .menuOption {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.wrapper .postSettingsMenu .menuOption img {
+  height: 20px;
+  width: 20px;
+}
+
+.wrapper .postSettingsMenu .menuOption:hover {
+  background-color: #585763;
 }
 
 .wrapper .postInfo {
@@ -34,14 +236,22 @@
       -ms-flex-align: center;
           align-items: center;
   height: 40px;
-  width: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .wrapper .postInfo img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+  cursor: pointer;
 }
 
 .wrapper .postInfo .text {
@@ -59,15 +269,18 @@
       -ms-flex-align: start;
           align-items: flex-start;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .wrapper .postInfo .text .name {
   font-size: 15px;
   margin-bottom: 2px;
+  cursor: pointer;
 }
 
 .wrapper .postInfo .text .date {
   font-size: 11px;
+  cursor: pointer;
 }
 
 .wrapper .postContent {
@@ -89,6 +302,8 @@
 
 .wrapper .postContent .text {
   font-size: 15px;
+  width: 100%;
+  overflow-wrap: break-word;
 }
 
 .wrapper .postContent .visual {
@@ -96,8 +311,8 @@
   margin-top: 10px;
 }
 
-.wrapper .postContent .postInteractive {
-  height: 30px;
+.wrapper .postContent .interactive {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,22 +327,60 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 10px;
+}
+
+.wrapper .postContent .interactive .postLikes,
+.wrapper .postContent .interactive .postComments {
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
 
-.wrapper .postContent .postInteractive img {
+.wrapper .postContent .interactive .postLikes img,
+.wrapper .postContent .interactive .postComments img {
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
 
-.wrapper .postContent .postInteractive * {
+.wrapper .postContent .interactive .postLikes *,
+.wrapper .postContent .interactive .postComments * {
   cursor: pointer;
+}
+
+.wrapper .postContent .interactive .postComments {
+  margin-left: 10px;
+}
+
+@media (max-width: 530px) {
+  .wrapper {
+    width: 100%;
+  }
 }
 
 @media (max-width: 370px) {
   .wrapper {
     padding: 15px;
+  }
+  .wrapper .postSettings {
+    top: 15px;
+    right: 15px;
+  }
+  .wrapper .confirmDelete .btn {
+    font-size: 15px;
+    padding: 10px 20px;
   }
 }
 /*# sourceMappingURL=Post.module.css.map */

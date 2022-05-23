@@ -20,6 +20,7 @@ function Posts(props) {
             login={value.login}
             date={value.date}
             postImage={value.image}
+            comments={value.comments}
             isUserLiked={value.isUserLiked}
             audio={value.audio}
             video={value.video}
